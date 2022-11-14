@@ -603,20 +603,7 @@ let gas = sprites.create(img`
     1 1 1 1 1 3 3 
     `, SpriteKind.Player)
 gas.setPosition(37, 44)
-let tank = sprites.create(img`
-    . . . . c c f f . . . . 
-    f f f . f f f f . f f f 
-    f c c . . c f . . c c f 
-    f f f . 3 c f 3 . f f f 
-    f c c 3 3 c c 3 3 c c f 
-    f f f 2 c 6 5 f 3 f f f 
-    f c c 2 f 4 5 f 2 c c f 
-    f f f 3 c c c f 3 f f f 
-    f c c 2 2 2 3 2 3 c c f 
-    f f f 3 2 2 3 3 2 f f f 
-    f c c . 3 1 1 3 . c c f 
-    f f f . . . . . . f f f 
-    `, SpriteKind.Player)
+let tank = sprites.create(assets.image`tank`, SpriteKind.Player)
 controller.moveSprite(tank, 100, 100)
 let explosion_01 = sprites.create(img`
     . . . . . . . . 
