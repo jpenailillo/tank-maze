@@ -68,6 +68,8 @@ f f f f f f f f f f f .
 
     sprite: Sprite;
     direction: Direction;
+    bullet : number = 3;
+    gasoline: number = 14;
 
     constructor(x: number, y: number, direction: Direction) {
         this.sprite = sprites.create(this.getImage(direction));
@@ -81,44 +83,56 @@ f f f f f f f f f f f .
     }
 
     shoot() {
-        let x = this.sprite.x;
-        let y = this.sprite.y;
+        if (this.bullet > 0) {
+            this.bullet -= 1;
 
-        switch (this.direction) {
-            case Direction.Up:
-                y = y - 8;
-                break;
-            case Direction.Left:
-                x = x - 8;
-                break;
-            case Direction.Down:
-                y = y + 8;
-                break;
-            case Direction.Right:
-                x = x + 8;
-                break;
+            let x = this.sprite.x;
+            let y = this.sprite.y;
+
+            switch (this.direction) {
+                case Direction.Up:
+                    y = y - 8;
+                    break;
+                case Direction.Left:
+                    x = x - 8;
+                    break;
+                case Direction.Down:
+                    y = y + 8;
+                    break;
+                case Direction.Right:
+                    x = x + 8;
+                    break;
+            }
+            new Blast(x, y);
         }
-
-        let blast = new Blast(x, y);
-
+        else {
+            game.splash("Sin balas !!!");
+        }
     }
 
     move() {
-        switch (this.direction) {
-            case Direction.Up:
-                this.sprite.setVelocity(0, -32);
-                break;
-            case Direction.Left:
-                this.sprite.setVelocity(-32, 0);
-                break;
-            case Direction.Down:
-                this.sprite.setVelocity(0, 32);
-                break;
-            case Direction.Right:
-                this.sprite.setVelocity(32, 0);
-                break;
+        if (this.gasoline > 0) {
+            this.gasoline -= 1;
+
+            switch (this.direction) {
+                case Direction.Up:
+                    this.sprite.setVelocity(0, -32);
+                    break;
+                case Direction.Left:
+                    this.sprite.setVelocity(-32, 0);
+                    break;
+                case Direction.Down:
+                    this.sprite.setVelocity(0, 32);
+                    break;
+                case Direction.Right:
+                    this.sprite.setVelocity(32, 0);
+                    break;
+            }
+            setTimeout(() => this.sprite.setVelocity(0, 0), 500);
         }
-        setTimeout(() => this.sprite.setVelocity(0, 0), 500);
+        else {
+            game.splash("Sin gasolina !!!");
+        }
     }
 
     rotateLeft() {

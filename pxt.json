@@ -14,7 +14,8 @@
         "images.g.jres",
         "images.g.ts",
         "tank.ts",
-        "blast.ts"
+        "blast.ts",
+        "board.ts"
     ],
     "testFiles": [
         "test.ts"
