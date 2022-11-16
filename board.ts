@@ -26,7 +26,9 @@ class Board {
         [new CellType(false, true, true, false), new CellType(true, true, false, false), new CellType(true, true, true, false), new CellType(true, false, true, true), new CellType(false, true, true, false), new CellType(true, true, false, false), new CellType(true, false, true, false)],
     ];
 
-    stones: Stone[][];
+    stones: Stone[][] = [];
+
+    gas: Gas[][] = [];
 
     constructor(offsetx?: number, offsety?: number) {
 
@@ -68,6 +70,18 @@ class Board {
             [new Stone(), null, new Stone(), null, null, null, null],
             [null, new Stone(), null, null, new Stone(), new Stone(), new Stone()],
         ];
+
+        // this.gas = [
+        //     [null, null, null, null, null, new Gas(), null],
+        //     [null, null, null, new Gas(), null, null, null],
+        //     [null, new Gas(), null, null, null, null, new Gas()],
+        //     [null, null, null, null, new Gas(), null, null],
+        //     [null, new Gas(), null, new Gas(), null, null, null],
+        //     [null, null, null, null, null, null, null],
+        //     [null, new Gas(), null, new Gas(), null, new Gas(), null],
+        //     [new Gas(), null, new Gas(), null, null, null, null],
+        //     [null, new Gas(), null, null, new Gas(), new Gas(), new Gas()],
+        // ];
 
         for (let c = 0; c < this.columns; c++) {
             for (let r = 0; r < this.rows; r++) {

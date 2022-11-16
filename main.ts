@@ -1,4 +1,5 @@
 movimientos.avanzar()
+movimientos.disparar()
 movimientos.girarIzquierda()
 movimientos.avanzar()
 movimientos.girarDerecha()

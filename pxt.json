@@ -22,7 +22,8 @@
         "tilemap.g.ts",
         "images.g.jres",
         "images.g.ts",
-        "board.ts"
+        "board.ts",
+        "gas.ts"
     ],
     "testFiles": [],
     "targetVersions": {
