@@ -1,11 +1,29 @@
-class Cell {
 
+class Cell {
+    cellBackground: Image = img`
+    . . . . . . . . . . . . . . . . 
+    3 . . . . . . . . . . . . . . . 
+    3 . . . . . . . . . 3 3 3 3 . . 
+    3 . . . . . . . . 3 . . . 3 3 . 
+    3 . . . . . 3 3 3 . . . . . 3 3 
+    3 . . . . . 3 . . . . . . . . 3 
+    3 . . . . . . . . . . . . . . 3 
+    3 . . . . . . . . . . . . . . 3 
+    3 . . . . . . . . . . . . . . 3 
+    3 . . . . . . . . . . . . . . 3 
+    3 . . . . . . . . . . . . . . 3 
+    3 . . . . . . . . . . . . . . 3 
+    3 . . . . . . . . . . . . . . 3 
+    3 . . . . . . . . . 3 3 3 . . 3 
+    3 3 3 3 3 3 3 3 3 3 . . . 3 3 3 
+    . . . . . . . . . . . . . . . . 
+    `;
     row: number;
     column: number;
 
     offsetx: number = 0;
     offsety: number = 0;
-    color: number = 2;
+    color: number = 9;
     width: number = 16;
     height: number = 16;
     posx: number;
@@ -24,13 +42,19 @@ class Cell {
         this.posx = this.width / 2 + this.offsetx;
         this.posy = this.height / 2 + this.offsety;
 
-        this.image = image.create(this.width, this.height);
+        this.image = this.cellBackground;//image.create(this.width, this.height);
+        // this.image.copyFrom()
 
-        this.image.drawLine(0, 0, this.width, 0, this.color);
-        this.image.drawLine(0, this.height - 1, this.width, this.height - 1, this.color);
+        this.image.fill(13);
 
-        this.image.drawLine(0, 0, 0, this.height, this.color);
-        this.image.drawLine(this.width - 1, 0, this.width - 1, this.height, this.color);
+        this.image.drawLine(0, 0, this.width, 0, 12);
+        // this.image.drawLine(0, this.height - 1, this.width, this.height - 1, 12);
+
+        this.image.drawLine(0, 0, 0, this.height, 12);
+        // this.image.drawLine(this.width - 1, 0, this.width - 1, this.height, 12);
+
+        this.image.drawLine(2, 1, this.width - 1, 1, 11);
+        this.image.drawLine(1, 2, 1, this.height - 1, 11);
 
         this.sprite = sprites.create(this.image);
         this.sprite.setPosition(this.posx, this.posy);

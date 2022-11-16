@@ -63,7 +63,7 @@ class Board {
         for (let c = 0; c < this.columns; c++) {
             this.cells[c] = [];
             for (let r = 0; r < this.rows; r++) {
-                this.cells[c][r] = new Cell(r, c, c * 15 + this.offsetx, r * 15 + this.offsety);
+                this.cells[c][r] = new Cell(r, c, c * 16 + this.offsetx, r * 16 + this.offsety);
             }
         }
 
