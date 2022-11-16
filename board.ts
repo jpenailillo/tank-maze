@@ -71,17 +71,17 @@ class Board {
             [null, new Stone(), null, null, new Stone(), new Stone(), new Stone()],
         ];
 
-        // this.gas = [
-        //     [null, null, null, null, null, new Gas(), null],
-        //     [null, null, null, new Gas(), null, null, null],
-        //     [null, new Gas(), null, null, null, null, new Gas()],
-        //     [null, null, null, null, new Gas(), null, null],
-        //     [null, new Gas(), null, new Gas(), null, null, null],
-        //     [null, null, null, null, null, null, null],
-        //     [null, new Gas(), null, new Gas(), null, new Gas(), null],
-        //     [new Gas(), null, new Gas(), null, null, null, null],
-        //     [null, new Gas(), null, null, new Gas(), new Gas(), new Gas()],
-        // ];
+        this.gas = [
+            [null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, new Gas()],
+            [null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, null],
+            [null, null, null, null, null, null, new Gas()],
+            [null, null, null, null, null, null, null],
+        ];
 
         for (let c = 0; c < this.columns; c++) {
             for (let r = 0; r < this.rows; r++) {
@@ -91,6 +91,10 @@ class Board {
                 if (this.stones[c][r]) {
                     let cell = this.cells[c][r];
                     this.stones[c][r].setPosition(cell.sprite.x, cell.sprite.y);
+                }
+                if (this.gas[c][r]) {
+                    let cell = this.cells[c][r];
+                    this.gas[c][r].setPosition(cell.sprite.x, cell.sprite.y);
                 }
             }
         }

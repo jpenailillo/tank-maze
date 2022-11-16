@@ -222,6 +222,14 @@ f f f f f f f f f f f .
             }
             basic.pause(50);
         }
+
+
+        if (this.board.gas[this.cell.column][this.cell.row]){
+            this.gasoline = 14;
+            panel.drawLeftEnergy(this.gasoline);
+            this.board.gas[this.cell.column][this.cell.row].destroy();
+            this.board.gas[this.cell.column][this.cell.row] = null;
+        }
     }
 
     rotateLeft() {
