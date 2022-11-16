@@ -1,12 +1,3 @@
-// Añade tu código aquí
-
-enum Direction {
-    Up,
-    Down,
-    Left,
-    Right,
-}
-
 class Tank {
 
     upImage: Image = img`
@@ -65,21 +56,65 @@ f c f c f c f c f c f .
 f c f c f c f c f c f . 
 f f f f f f f f f f f . 
 `;
-
+    bullet: number = 3;
+    gasoline: number = 50;
+    
+    cell: Cell;
+    board: Board 
     sprite: Sprite;
     direction: Direction;
-    bullet : number = 3;
-    gasoline: number = 14;
 
-    constructor(x: number, y: number, direction: Direction) {
+    constructor(board: Board, cell: Cell, direction: Direction) {
         this.sprite = sprites.create(this.getImage(direction));
-        this.sprite.setPosition(x, y);
         this.direction = direction;
+        this.board = board;
+        this.cell = cell;
+
+        this.setPosition();
     }
 
-    setDirection(direction: Direction) {
+    setPosition(): void {
+        this.sprite.setPosition(this.cell.posx, this.cell.posy);
+    }
+
+    setDirection(direction: Direction){
         this.sprite.setImage(this.getImage(direction));
         this.direction = direction;
+    } 
+
+    destroyStone(): void {
+        let column: number;
+        let row: number;
+
+        switch (this.direction){
+            case Direction.Up:
+                column = this.cell.column;
+                row = this.cell.row - 1;
+                if (row < 0 || this.board.stones[column][row] == null)
+                    return;
+                break;
+            case Direction.Down:
+                column = this.cell.column;
+                row = this.cell.row + 1;
+                if (row == this.board.rows || this.board.stones[column][row] == null)
+                    return;
+
+                break;
+            case Direction.Left:
+                column = this.cell.column -1;
+                row = this.cell.row;
+                if (column < 0 || this.board.stones[column][row] == null)
+                    return;
+                break;
+            case Direction.Right:
+                column = this.cell.column + 1;
+                row = this.cell.row;
+                if (column == this.board.columns || this.board.stones[column][row] == null)
+                    return;
+                break;
+        }
+        this.board.stones[column][row].destroy();
+        this.board.stones[column][row] = null;
     }
 
     shoot() {
@@ -91,47 +126,100 @@ f f f f f f f f f f f .
 
             switch (this.direction) {
                 case Direction.Up:
-                    y = y - 8;
+                    y = y - 6;
                     break;
                 case Direction.Left:
-                    x = x - 8;
+                    x = x - 6;
                     break;
                 case Direction.Down:
-                    y = y + 8;
+                    y = y + 6;
                     break;
                 case Direction.Right:
-                    x = x + 8;
+                    x = x + 6;
                     break;
             }
             new Blast(x, y);
+
+            this.destroyStone();
         }
         else {
             game.splash("Sin balas !!!");
         }
     }
 
-    move() {
-        if (this.gasoline > 0) {
-            this.gasoline -= 1;
+    isValid(column: number, row: number): boolean {
+        if (this.board.stones[column][row]) {
+            game.splash("Roca en el camino !!!");
+            return false;
+        }
+        return true;
+    }
 
+    move(){
+        if (this.gasoline == 0) {
+            game.splash("Sin gasolina !!!");
+            return;
+        }
+
+        switch (this.direction) {
+            case Direction.Up:
+            {
+                if (this.cell.row == 0) return;
+                if (!this.isValid(this.cell.column, this.cell.row - 1)) return;
+                let cell = this.board.getCell(this.cell.column, this.cell.row - 1);
+                if (!cell.cellType.down) { game.splash("Camino no valido !!!"); return; }
+                this.cell = cell;
+                break;
+            }
+            case Direction.Down:
+            {
+                if (this.cell.row == this.board.rows - 1) return;
+                if (!this.isValid(this.cell.column, this.cell.row + 1)) return;
+                let cell = this.board.getCell(this.cell.column, this.cell.row + 1);
+                if (!cell.cellType.up) { game.splash("Camino no valido !!!"); return; }
+                this.cell = cell;
+                break;
+            }
+            case Direction.Left:
+            {
+                if (this.cell.column == 0) return;
+                if (!this.isValid(this.cell.column - 1, this.cell.row)) return;
+                let cell = this.board.getCell(this.cell.column - 1, this.cell.row);
+                if (!cell.cellType.right) { game.splash("Camino no valido !!!"); return; }
+                this.cell = cell;
+                break;
+            }
+            case Direction.Right:
+            {
+                if (this.cell.column == this.board.columns - 1) return;
+                if (!this.isValid(this.cell.column + 1, this.cell.row)) return;
+                let cell = this.board.getCell(this.cell.column + 1, this.cell.row);
+                if (!cell.cellType.left) { game.splash("Camino no valido !!!"); return; }
+                this.cell = cell;
+                break;
+            }
+        }
+
+        
+
+        this.gasoline -= 1;
+
+        for (let i = 0; i < 15; i++) {
             switch (this.direction) {
                 case Direction.Up:
-                    this.sprite.setVelocity(0, -32);
+                    this.sprite.setPosition(this.sprite.x, this.sprite.y - 1);
                     break;
                 case Direction.Left:
-                    this.sprite.setVelocity(-32, 0);
+                    this.sprite.setPosition(this.sprite.x - 1, this.sprite.y);
                     break;
                 case Direction.Down:
-                    this.sprite.setVelocity(0, 32);
+                    this.sprite.setPosition(this.sprite.x, this.sprite.y + 1);
                     break;
                 case Direction.Right:
-                    this.sprite.setVelocity(32, 0);
+                    this.sprite.setPosition(this.sprite.x + 1, this.sprite.y);
                     break;
             }
-            setTimeout(() => this.sprite.setVelocity(0, 0), 500);
-        }
-        else {
-            game.splash("Sin gasolina !!!");
+            basic.pause(50);
         }
     }
 
@@ -172,8 +260,8 @@ f f f f f f f f f f f .
     }
 
     getImage(direction: Direction): Image {
-        switch (direction) {
-            case Direction.Up:
+        switch(direction){
+            case Direction.Up: 
                 return this.upImage;
             case Direction.Down:
                 return this.downImage;

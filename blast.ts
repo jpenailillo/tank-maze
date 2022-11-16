@@ -1,6 +1,4 @@
-// Añade tu código aquí
-
-class Blast {
+class Blast {   
 
     sprite: Sprite;
 
@@ -68,7 +66,7 @@ b . . a a . . b
 . . . . . . . . 
 . . . . . . . . 
 `];
-
+    
     constructor(x: number, y: number) {
         this.sprite = sprites.create(this.images[0], SpriteKind.Enemy);
         this.sprite.setPosition(x, y);

@@ -1,95 +1,51 @@
-// enum CellType {
-//   Path = 0,
-//   Obstacle = 1,
-//   Battery = 2,
-// }
-
-enum CellType {
-  Vertical = 0,
-  VerticalLeft = 1,
-  VerticalRight = 2,
-  Horizontal = 3,
-  HorizontalUp = 4,
-  HorizontalDown = 5,
-  TopLeft = 6,
-  TopRight = 7,
-  BottomLeft = 8,
-  BottomRight = 9,
-  All = 10,
-};
-
-function getPathCell(cellType: CellType, position: [number, number]) {
-	const cellImage = image.create(15, 15);
-	const cellSprite = sprites.create(cellImage, SpriteKind.Player);
-
-	switch (cellType) {
-		case CellType.Vertical:
-			cellImage.drawLine(7, 0, 7, 15, 9);
-			break;
-		case CellType.VerticalLeft:
-			cellImage.drawLine(7, 0, 7, 15, 9);
-			cellImage.drawLine(0, 7, 15, 7, 9);
-			break;
-		case CellType.VerticalRight:
-			cellImage.drawLine(7, 0, 7, 15, 9);
-			cellImage.drawLine(0, 7, 15, 7, 9);
-			break;
-		case CellType.Horizontal:
-			cellImage.drawLine(0, 7, 15, 7, 9);
-			break;
-		case CellType.HorizontalUp:
-			cellImage.drawLine(0, 7, 15, 7, 9);
-			cellImage.drawLine(7, 0, 7, 15, 9);
-			break;
-		case CellType.HorizontalDown:
-			cellImage.drawLine(0, 7, 15, 7, 9);
-			cellImage.drawLine(7, 0, 7, 15, 9);
-			break;
-		case CellType.TopLeft:
-			cellImage.drawLine(0, 7, 15, 7, 9);
-			cellImage.drawLine(7, 0, 7, 15, 9);
-			cellImage.drawLine(0, 0, 15, 15, 9);
-			break;
-		case CellType.TopRight:
-			cellImage.drawLine(0, 7, 15, 7, 9);
-			cellImage.drawLine(7, 0, 7, 15, 9);
-			cellImage.drawLine(0, 15, 15, 0, 9);
-			break;
-		case CellType.BottomLeft:
-			cellImage.drawLine(0, 7, 15, 7, 9);
-			cellImage.drawLine(7, 0, 7, 15, 9);
-			cellImage.drawLine(0, 15, 15, 0, 9);
-			break;
-		case CellType.BottomRight:
-			cellImage.drawLine(0, 7, 15, 7, 9);
-			cellImage.drawLine(7, 0, 7, 15, 9);
-			cellImage.drawLine(0, 0, 15, 15, 9);
-			break;
-		case CellType.All:
-			cellImage.drawLine(0, 0, 15, 15, 9);
-			cellImage.drawLine(0, 15, 15, 0, 9);
-			break;
-	}
-
-	cellSprite.setImage(cellImage);
-	return cellSprite;
-}
-
-type Position = [number, number];
-
 class Cell {
-  type: CellType;
-	position: Position;
-	sprite: Sprite;
 
-  constructor(type: CellType, offset: Position, position: Position) {
-    this.type = type;
-		this.position = position;
-		this.sprite = getPathCell(type, [offset[0] + position[0], offset[1] + position[1]]);
-		this.sprite.setPosition(12 + this.position[0] * 15, 4 + this.position[1] * 15);
-	}
+    row: number;
+    column: number;
 
-	draw() {
+    offsetx: number = 0;
+    offsety: number = 0;
+    color: number = 2;
+    width: number = 16;
+    height: number = 16;
+    posx: number;
+    posy: number;
+    sprite: Sprite;
+    image: Image;
+    cellType: CellType;
 
-	}
+    constructor(row: number, column: number, offsetx: number, offsety: number) {
+        this.row = row;
+        this.column = column;
+
+        this.offsetx = offsetx;
+        this.offsety = offsety;
+
+        this.posx = this.width / 2 + this.offsetx;
+        this.posy = this.height / 2 + this.offsety;
+
+        this.image = image.create(this.width, this.height);
+
+        this.image.drawLine(0, 0, this.width, 0, this.color);
+        this.image.drawLine(0, this.height - 1, this.width, this.height - 1, this.color);
+
+        this.image.drawLine(0, 0, 0, this.height, this.color);
+        this.image.drawLine(this.width - 1, 0, this.width - 1, this.height, this.color);
+
+        this.sprite = sprites.create(this.image);
+        this.sprite.setPosition(this.posx, this.posy);
+    }
+
+    drawCellType(): void {
+        this.color = 4;
+        
+        if (this.cellType.left) 
+            this.image.drawLine(0, this.height / 2, this.width / 2, this.height / 2, this.color);
+        if (this.cellType.right)
+            this.image.drawLine(this.width / 2, this.height / 2, this.width, this.height / 2, this.color);
+        if (this.cellType.up)
+            this.image.drawLine(this.width / 2, 0, this.width / 2, this.height / 2, this.color);
+        if (this.cellType.down)
+            this.image.drawLine(this.width / 2, this.height / 2, this.width / 2, this.height, this.color);
+    }
 }
