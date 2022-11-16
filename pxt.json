@@ -11,6 +11,7 @@
 				"init.ts",
 				"stone.ts",
 				"tank.ts",
+				"board.ts",
 				"blast.ts",
 				"cell.ts",
 				"cell_type.ts",
