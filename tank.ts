@@ -204,7 +204,7 @@ f f f f f f f f f f f .
 
         this.gasoline -= 1;
 
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 16; i++) {
             switch (this.direction) {
                 case Direction.Up:
                     this.sprite.setPosition(this.sprite.x, this.sprite.y - 1);
