@@ -113,11 +113,13 @@ f f f f f f f f f f f .
                     return;
                 break;
         }
+        music.playSoundEffect(music.createSoundEffect(WaveShape.Sawtooth, 186, 1, 133, 0, 700, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), SoundExpressionPlayMode.InBackground)
         this.board.stones[column][row].destroy();
         this.board.stones[column][row] = null;
     }
 
     shoot() {
+        music.playSoundEffect(music.createSoundEffect(WaveShape.Square, 1, 186, 255, 0, 500, SoundExpressionEffect.Vibrato, InterpolationCurve.Linear), SoundExpressionPlayMode.InBackground)
         if (this.bullet > 0) {
             scene.cameraShake(2, 500)
             this.bullet -= 1;
@@ -204,6 +206,7 @@ f f f f f f f f f f f .
 
         
         this.gasoline -= 1;
+        music.playSoundEffect(music.createSoundEffect(WaveShape.Square, 1, 98, 151, 151, 800, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), SoundExpressionPlayMode.InBackground)
         panel.drawLeftEnergy(this.gasoline);
 
         for (let i = 0; i < 16; i++) {
@@ -224,6 +227,7 @@ f f f f f f f f f f f .
             basic.pause(50);
         }
         if (this.board.gas[this.cell.column][this.cell.row]){
+            music.playSoundEffect(music.createSoundEffect(WaveShape.Square, 114, 500, 255, 0, 600, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), SoundExpressionPlayMode.InBackground)
             this.gasoline = 14;
             panel.drawLeftEnergy(this.gasoline);
             this.board.gas[this.cell.column][this.cell.row].destroy();
