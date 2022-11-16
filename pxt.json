@@ -7,21 +7,21 @@
     "files": [
         "main.blocks",
         "main.ts",
-				"direction.ts",
-				"init.ts",
-				"stone.ts",
-				"tank.ts",
-				"board.ts",
-				"blast.ts",
-				"cell.ts",
-				"cell_type.ts",
-				"custom.ts",
+        "direction.ts",
+        "init.ts",
+        "stone.ts",
+        "tank.ts",
+        "blast.ts",
+        "cell.ts",
+        "cell_type.ts",
+        "custom.ts",
         "README.md",
         "assets.json",
         "tilemap.g.jres",
         "tilemap.g.ts",
         "images.g.jres",
-        "images.g.ts"
+        "images.g.ts",
+        "board.ts"
     ],
     "testFiles": [],
     "targetVersions": {
@@ -31,7 +31,7 @@
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "blocksprj",
+    "preferredEditor": "tsprj",
     "palette": [
         "#889a92",
         "#49c893",
