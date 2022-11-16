@@ -12,8 +12,8 @@ class Panel {
 	}
 
 	draw() {
-		const background = image.create(16, 16);
-		background.fill(2);
+		const background = image.create(40, 220);
+		background.fill(13);
 		sprites.create(background).setPosition(this.config.x, this.config.y);
 	}
 
