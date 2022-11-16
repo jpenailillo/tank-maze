@@ -15,6 +15,7 @@
         "cell.ts",
         "cell_type.ts",
         "custom.ts",
+        "panel.ts",
         "README.md",
         "assets.json",
         "tilemap.g.jres",
