@@ -14,18 +14,25 @@ class Panel {
 	}
 
 	draw() {
-		// const background = image.create(14, 220);
-		// background.fill(4);
-		// sprites.create(background).setPosition(6 + this.config.x, 8 + this.config.y);
         this.battery = image.create(7, 54);
         sprites.create(this.battery).setPosition(6, 44);
+        const energy = img`
+3 1 1 1 1 1 2 
+3 1 1 1 1 1 1 
+3 1 e e e 1 1 
+3 1 e 1 1 1 1 
+1 1 e e e 1 1 
+1 1 e 1 1 1 2 
+1 1 e e e 1 2 
+3 1 1 1 1 1 2 
+1 1 1 1 1 1 2 
+`
+        sprites.create(energy).setPosition(6, 9);
 	}
 
     drawEnergy(count: number){
-        // this.battery.fill(10)
         for(let i = 0; i < 14; i++) {
-            // this.battery.fill(2)
-            this.battery.fillRect(0, 4*i, 7, 2, 11);
+            this.battery.fillRect(0, 4*i, 7, 2, 14 -i > count ? 11 : 2);
         }
     }
 
