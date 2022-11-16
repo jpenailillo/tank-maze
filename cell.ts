@@ -23,7 +23,7 @@ class Cell {
 
     offsetx: number = 0;
     offsety: number = 0;
-    color: number = 9;
+    color: number = 10;
     width: number = 16;
     height: number = 16;
     posx: number;
@@ -42,8 +42,7 @@ class Cell {
         this.posx = this.width / 2 + this.offsetx;
         this.posy = this.height / 2 + this.offsety;
 
-        this.image = this.cellBackground;//image.create(this.width, this.height);
-        // this.image.copyFrom()
+        this.image = image.create(this.width, this.height);
 
         this.image.fill(13);
 
@@ -61,7 +60,6 @@ class Cell {
     }
 
     drawCellType(): void {
-        this.color = 4;
         
         if (this.cellType.left) 
             this.image.drawLine(0, this.height / 2, this.width / 2, this.height / 2, this.color);

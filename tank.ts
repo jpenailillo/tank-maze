@@ -57,7 +57,7 @@ f c f c f c f c f c f .
 f f f f f f f f f f f . 
 `;
     bullet: number = 3;
-    gasoline: number = 50;
+    gasoline: number = 14;
     
     cell: Cell;
     board: Board 
@@ -120,6 +120,7 @@ f f f f f f f f f f f .
     shoot() {
         if (this.bullet > 0) {
             this.bullet -= 1;
+            panel.drawLeftBullets(this.bullet);
 
             let x = this.sprite.x;
             let y = this.sprite.y;
@@ -201,8 +202,8 @@ f f f f f f f f f f f .
         }
 
         
-
         this.gasoline -= 1;
+        panel.drawLeftEnergy(this.gasoline);
 
         for (let i = 0; i < 16; i++) {
             switch (this.direction) {

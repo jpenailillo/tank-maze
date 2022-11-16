@@ -26,17 +26,7 @@ class Board {
         [new CellType(false, true, true, false), new CellType(true, true, false, false), new CellType(true, true, true, false), new CellType(true, false, true, true), new CellType(false, true, true, false), new CellType(true, true, false, false), new CellType(true, false, true, false)],
     ];
 
-    stones: Stone[][] = [
-        [null, null, null, null, null, new Stone(), null],
-        [null, null, null, new Stone(), null, null, null],
-        [null, new Stone(), null, null, null, null, new Stone()],
-        [null, null, null, null, new Stone(), null, null],
-        [null, new Stone(), null, new Stone(), null, null, null],
-        [null, null, null, null, null, null, null],
-        [null, new Stone(), null, new Stone(), null, new Stone(), null],
-        [new Stone(), null, new Stone(), null, null, null, null],
-        [null, new Stone(), null, null, new Stone(), new Stone(), new Stone()],
-    ];
+    stones: Stone[][];
 
     constructor(offsetx?: number, offsety?: number) {
 
@@ -66,6 +56,18 @@ class Board {
                 this.cells[c][r] = new Cell(r, c, c * 16 + this.offsetx, r * 16 + this.offsety);
             }
         }
+
+        this.stones = [
+            [null, null, null, null, null, new Stone(), null],
+            [null, null, null, new Stone(), null, null, null],
+            [null, new Stone(), null, null, null, null, new Stone()],
+            [null, null, null, null, new Stone(), null, null],
+            [null, new Stone(), null, new Stone(), null, null, null],
+            [null, null, null, null, null, null, null],
+            [null, new Stone(), null, new Stone(), null, new Stone(), null],
+            [new Stone(), null, new Stone(), null, null, null, null],
+            [null, new Stone(), null, null, new Stone(), new Stone(), new Stone()],
+        ];
 
         for (let c = 0; c < this.columns; c++) {
             for (let r = 0; r < this.rows; r++) {
