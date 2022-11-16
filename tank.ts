@@ -206,7 +206,7 @@ f f f f f f f f f f f .
 
         
         this.gasoline -= 1;
-        music.playSoundEffect(music.createSoundEffect(WaveShape.Square, 1, 98, 151, 151, 800, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), SoundExpressionPlayMode.InBackground)
+        music.playSoundEffect(music.createSoundEffect(WaveShape.Square, 100, 200, 151, 151, 800, SoundExpressionEffect.Vibrato, InterpolationCurve.Curve), SoundExpressionPlayMode.InBackground)
         panel.drawLeftEnergy(this.gasoline);
 
         for (let i = 0; i < 16; i++) {
@@ -234,6 +234,7 @@ f f f f f f f f f f f .
             this.board.gas[this.cell.column][this.cell.row] = null;
         }
         if (this.board.end.column === this.cell.column && this.board.end.row === this.cell.row) {
+            music.playMelody("G A B C5 - - A C5 C5 C5 C5 ", 450)
             const confetti = sprites.create(image.create(120, 2));
             confetti.setPosition(80, -2);
             confetti.startEffect(effects.confetti);
