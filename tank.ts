@@ -119,6 +119,7 @@ f f f f f f f f f f f .
 
     shoot() {
         if (this.bullet > 0) {
+            scene.cameraShake(2, 500)
             this.bullet -= 1;
             panel.drawLeftBullets(this.bullet);
 
@@ -222,13 +223,17 @@ f f f f f f f f f f f .
             }
             basic.pause(50);
         }
-
-
         if (this.board.gas[this.cell.column][this.cell.row]){
             this.gasoline = 14;
             panel.drawLeftEnergy(this.gasoline);
             this.board.gas[this.cell.column][this.cell.row].destroy();
             this.board.gas[this.cell.column][this.cell.row] = null;
+        }
+        if (this.board.end.column === this.cell.column && this.board.end.row === this.cell.row) {
+            const confetti = sprites.create(image.create(120, 2));
+            confetti.setPosition(80, -2);
+            confetti.startEffect(effects.confetti);
+            basic.pause(100);
         }
     }
 

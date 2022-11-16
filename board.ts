@@ -1,5 +1,4 @@
 class Board {
-
     rows: number = 7;
     columns: number = 9;
 
@@ -15,25 +14,100 @@ class Board {
     image: Image;
 
     road: CellType[][] = [
-        [new CellType(false, false, false, false), new CellType(false, true, true, true), new CellType(true, true, false, false), new CellType(true, true, false, true), new CellType(true, true, false, false), new CellType(true, true, false, true), new CellType(true, false, false, true)],
-        [new CellType(false, true, false, true), new CellType(true, true, true, true), new CellType(true, true, false, false), new CellType(true, true, true, false), new CellType(true, true, false, false), new CellType(true, false, true, true), new CellType(false, false, true, true)],
-        [new CellType(false, false, true, true), new CellType(false, false, true, true), new CellType(false, true, false, true), new CellType(true, true, false, true), new CellType(true, true, false, true), new CellType(true, true, true, false), new CellType(true, false, true, true)],
-        [new CellType(false, true, true, false), new CellType(true, true, true, true), new CellType(true, true, true, true), new CellType(true, true, true, true), new CellType(true, false, true, true), new CellType(false, true, false, true), new CellType(true, false, true, false)],
-        [new CellType(false, true, false, true), new CellType(true, true, true, true), new CellType(true, true, true, true), new CellType(true, false, true, true), new CellType(false, false, true, true), new CellType(false, true, true, false), new CellType(true, false, false, true)],
-        [new CellType(false, true, true, false), new CellType(true, true, true, false), new CellType(true, true, true, true), new CellType(true, true, true, true), new CellType(true, true, true, true), new CellType(true, true, false, true), new CellType(true, false, true, false)],
-        [new CellType(false, true, false, true), new CellType(true, true, false, false), new CellType(true, false, true, false), new CellType(false, true, true, false), new CellType(true, true, true, false), new CellType(true, true, true, true), new CellType(true, false, false, true)],
-        [new CellType(false, true, true, true), new CellType(true, true, false, false), new CellType(true, true, false, true), new CellType(true, true, false, true), new CellType(true, false, false, true), new CellType(false, true, true, false), new CellType(true, false, true, true)],
-        [new CellType(false, true, true, false), new CellType(true, true, false, false), new CellType(true, true, true, false), new CellType(true, false, true, true), new CellType(false, true, true, false), new CellType(true, true, false, false), new CellType(true, false, true, false)],
+        [
+            new CellType(false, false, false, false),
+            new CellType(false, true, true, true),
+            new CellType(true, true, false, false),
+            new CellType(true, true, false, true),
+            new CellType(true, true, false, false),
+            new CellType(true, true, false, true),
+            new CellType(true, false, false, true),
+        ],
+        [
+            new CellType(false, true, false, true),
+            new CellType(true, true, true, true),
+            new CellType(true, true, false, false),
+            new CellType(true, true, true, false),
+            new CellType(true, true, false, false),
+            new CellType(true, false, true, true),
+            new CellType(false, false, true, true),
+        ],
+        [
+            new CellType(false, false, true, true),
+            new CellType(false, false, true, true),
+            new CellType(false, true, false, true),
+            new CellType(true, true, false, true),
+            new CellType(true, true, false, true),
+            new CellType(true, true, true, false),
+            new CellType(true, false, true, true),
+        ],
+        [
+            new CellType(false, true, true, false),
+            new CellType(true, true, true, true),
+            new CellType(true, true, true, true),
+            new CellType(true, true, true, true),
+            new CellType(true, false, true, true),
+            new CellType(false, true, false, true),
+            new CellType(true, false, true, false),
+        ],
+        [
+            new CellType(false, true, false, true),
+            new CellType(true, true, true, true),
+            new CellType(true, true, true, true),
+            new CellType(true, false, true, true),
+            new CellType(false, false, true, true),
+            new CellType(false, true, true, false),
+            new CellType(true, false, false, true),
+        ],
+        [
+            new CellType(false, true, true, false),
+            new CellType(true, true, true, false),
+            new CellType(true, true, true, true),
+            new CellType(true, true, true, true),
+            new CellType(true, true, true, true),
+            new CellType(true, true, false, true),
+            new CellType(true, false, true, false),
+        ],
+        [
+            new CellType(false, true, false, true),
+            new CellType(true, true, false, false),
+            new CellType(true, false, true, false),
+            new CellType(false, true, true, false),
+            new CellType(true, true, true, false),
+            new CellType(true, true, true, true),
+            new CellType(true, false, false, true),
+        ],
+        [
+            new CellType(false, true, true, true),
+            new CellType(true, true, false, false),
+            new CellType(true, true, false, true),
+            new CellType(true, true, false, true),
+            new CellType(true, false, false, true),
+            new CellType(false, true, true, false),
+            new CellType(true, false, true, true),
+        ],
+        [
+            new CellType(false, true, true, false),
+            new CellType(true, true, false, false),
+            new CellType(true, true, true, false),
+            new CellType(true, false, true, true),
+            new CellType(false, true, true, false),
+            new CellType(true, true, false, false),
+            new CellType(true, false, true, false),
+        ],
     ];
 
     stones: Stone[][] = [];
 
     gas: Gas[][] = [];
 
-    constructor(offsetx?: number, offsety?: number) {
+    start: Cell;
 
-        this.width = (this.columns * 14) + ((this.columns - 1) * 1) + 2;
-        this.height = (this.rows * 14) + ((this.rows - 1) * 1) + 2;
+    end: Cell;
+
+    constructor(offsetx?: number, offsety?: number) {
+        this.width = this.columns * 14 + (this.columns - 1) * 1 + 2;
+        this.height = this.rows * 14 + (this.rows - 1) * 1 + 2;
 
         this.offsetx = offsetx || this.offsetx;
         this.offsety = offsety || this.offsety;
@@ -44,10 +118,22 @@ class Board {
         this.image = image.create(this.width, this.height);
 
         this.image.drawLine(0, 0, this.width, 0, this.color);
-        this.image.drawLine(0, this.height - 1, this.width, this.height - 1, this.color);
+        this.image.drawLine(
+            0,
+            this.height - 1,
+            this.width,
+            this.height - 1,
+            this.color
+        );
 
         this.image.drawLine(0, 0, 0, this.height, this.color);
-        this.image.drawLine(this.width - 1, 0, this.width - 1, this.height, this.color);
+        this.image.drawLine(
+            this.width - 1,
+            0,
+            this.width - 1,
+            this.height,
+            this.color
+        );
 
         this.sprite = sprites.create(this.image);
         this.sprite.setPosition(this.posx, this.posy);
@@ -55,7 +141,12 @@ class Board {
         for (let c = 0; c < this.columns; c++) {
             this.cells[c] = [];
             for (let r = 0; r < this.rows; r++) {
-                this.cells[c][r] = new Cell(r, c, c * 16 + this.offsetx, r * 16 + this.offsety);
+                this.cells[c][r] = new Cell(
+                    r,
+                    c,
+                    c * 16 + this.offsetx,
+                    r * 16 + this.offsety
+                );
             }
         }
 
@@ -98,6 +189,10 @@ class Board {
                 }
             }
         }
+        this.start = this.getCell(0, 1);
+        this.end = this.getCell(8, 3);
+        this.start.sprite.image.drawRect(0, 3, 1, 10, 7)
+        this.end.sprite.image.drawRect(15, 3, 1, 10, 7)
     }
 
     getCell(column: number, row: number): Cell {
