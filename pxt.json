@@ -6,8 +6,8 @@
     },
     "files": [
         "main.blocks",
-				"level.ts",
-				"init.ts",
+        "level.ts",
+        "init.ts",
         "main.ts",
         "direction.ts",
         "stone.ts",
@@ -34,7 +34,7 @@
     "supportedTargets": [
         "arcade"
     ],
-    "preferredEditor": "blocksprj",
+    "preferredEditor": "tsprj",
     "palette": [
         "#889a92",
         "#49c893",
