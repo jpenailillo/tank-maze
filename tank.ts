@@ -64,11 +64,11 @@ f f f f f f f f f f f .
     sprite: Sprite;
     direction: Direction;
 
-    constructor(board: Board, cell: Cell, direction: Direction) {
+    constructor(board: Board, direction: Direction) {
         this.sprite = sprites.create(this.getImage(direction));
         this.direction = direction;
         this.board = board;
-        this.cell = cell;
+        this.cell = board.getCell(board.start.column, board.start.row);
 
         this.setPosition();
     }

@@ -89,8 +89,11 @@ class Board {
                 }
             }
         }
-        this.start = this.getCell(0, 1);
-        this.end = this.getCell(8, 3);
+        
+        const [startX, startY] = level.start;
+        const [endX, endY] = level.end;
+        this.start = this.getCell(startX, startY);
+        this.end = this.getCell(endX, endY);
         this.start.sprite.image.drawRect(0, 3, 1, 10, 7);
         this.end.sprite.image.drawRect(15, 3, 1, 10, 7);
     }
