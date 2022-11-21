@@ -10,6 +10,7 @@
         "direction.ts",
         "init.ts",
         "stone.ts",
+        "level.ts",
         "tank.ts",
         "blast.ts",
         "cell.ts",
