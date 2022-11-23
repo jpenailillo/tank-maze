@@ -1,5 +1,6 @@
 {
     "name": "Tank Maze",
+    "version": "0.0.3",
     "description": "",
     "dependencies": {
         "device": "*"
